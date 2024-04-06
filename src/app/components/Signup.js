@@ -1,8 +1,8 @@
 
 export default function Signup() {
   return (
-    <div className="flex w-full my-10 items-center justify-center ">
-  <div className="bg-white p-8 rounded shadow-md w-96">
+    <div className="flex w-full p-5 my-10 items-center justify-center ">
+  <div className="bg-white w-full p-8 rounded shadow-md">
     <h2 className="text-2xl font-bold mb-4">Sign Up</h2>
     <form action="#" method="POST">
       <div className="mb-4">
