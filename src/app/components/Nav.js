@@ -39,35 +39,35 @@ const Navbar = () => {
                 </li>
 
                 <li class="nav-link">
-                    <Link href="#">
+                    <Link href="/videos">
                         <i class='bx bx-play-circle icon'></i>
                         <span class="text nav-text">Videos</span>
                     </Link>
                 </li>
 
                 <li class="nav-link">
-                    <Link href="#">
+                    <Link href="/notifications">
                         <i class='bx bx-bell icon'></i>
                         <span class="text nav-text">Notifications</span>
                     </Link>
                 </li>
 
                 <li class="nav-link">
-                    <Link href="#">
+                    <Link href="/analytics">
                         <i class='bx bx-pie-chart-alt icon'></i>
                         <span class="text nav-text">Analytics</span>
                     </Link>
                 </li>
 
                 <li class="nav-link">
-                    <Link href="#">
+                    <Link href="/likes">
                         <i class='bx bx-heart icon'></i>
                         <span class="text nav-text">Likes</span>
                     </Link>
                 </li>
 
                 <li class="nav-link">
-                    <Link href="#">
+                    <Link href="/account">
                         <i class='bx bx-user-circle icon'></i>
                         <span class="text nav-text">Account</span>
                     </Link>
@@ -78,7 +78,7 @@ const Navbar = () => {
 
         <div class="bottom-content">
             <li class="">
-                <Link href="#">
+                <Link href="/logout">
                     <i class='bx bx-log-out icon'></i>
                     <span class="text nav-text">Logout</span>
                 </Link>

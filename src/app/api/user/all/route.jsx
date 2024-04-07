@@ -3,13 +3,15 @@ import prisma from "../../../../../prisma/index";
 export async function GET(req, res, slug) {
   const users = await prisma.user.findMany({
     where: {
-      username: res.params.slug,
+      //op
+    },
+    orderBy: {
+      id: 'desc',
     },
     // skip: 1,
     // take: 1
   });
   
-  console.log(res.params.slug);
 
   if (users.length) {
     return Response.json({
@@ -26,5 +28,4 @@ export async function GET(req, res, slug) {
       status: 404,
     });
   }
-
 }
