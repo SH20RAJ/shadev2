@@ -2,14 +2,14 @@
 
 // import Sidebar from '../components/Sidebar';
 import Post from './components/Post';
-import Sidebar from './components/Sidebar';
+import Home from './components/Home';
 
-const Home = () => {
+const Page = () => {
   return (
     <>
-
+    <Home />
     </>
   );
 };
 
-export default Home;
+export default Page;
