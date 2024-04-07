@@ -1,10 +1,10 @@
 // pages/index.js
 
 // import Sidebar from '../components/Sidebar';
-import Post from './components/Post';
 import Home from './components/Home';
 
-const Page = () => {
+const Page = (req,res) => {
+  console.log(res);
   return (
     <>
     <Home />

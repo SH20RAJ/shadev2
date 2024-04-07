@@ -18,7 +18,7 @@ export async function POST(req, res, next) {
 
   if(user){
     const key = process.env.TOKEN_SECRET || '1234';
-    console.log(key);
+    console.log("key",btoa(user[0].username));
     
     const encryptedText = Encriptor.encrypt(btoa(user[0].username), key);
     let token = encryptedText
@@ -31,7 +31,7 @@ export async function POST(req, res, next) {
   responce.cookies.set({
     name : "token",
     value : token,
-    maxAge: 5 * 60 * 60 * 24
+    maxAge: 95 * 60 * 60 * 24
   })
     return responce;
   }else {

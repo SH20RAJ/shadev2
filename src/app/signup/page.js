@@ -1,3 +1,4 @@
+import { redirect } from 'next/dist/server/api-utils';
 import React, { useState } from 'react';
 
 export default function Home() {
@@ -24,6 +25,7 @@ export default function Home() {
         setUsername('');
         setEmail('');
         setPassword('');
+        redirect("/")
       } else {
         setMessage(data.error || 'An error occurred.');
       }

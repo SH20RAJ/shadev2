@@ -1,6 +1,7 @@
 // components/Navbar.js
 
 import Link from 'next/link';
+import { getUser } from '../helpers/auth';
 
 const Navbar = () => {
   return (
@@ -15,7 +16,7 @@ const Navbar = () => {
 
             <div class="text logo-text">
                 <span class="name">Shade</span>
-                <span class="profession">Be Social</span>
+                <span class="profession">Be Social { (getUser())? "Welcome":"Hii - "+getUser() }</span>
             </div>
         </div>
 

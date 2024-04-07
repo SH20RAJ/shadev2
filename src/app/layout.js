@@ -1,12 +1,14 @@
 import "./globals.css";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
+import Cookie,{getUser, user} from "./helpers/auth";
 
 
 export const metadata = {
   title: "Shade",
   description: "All in one social media app",
 };
+
 
 export default function RootLayout({ children }) {
   return (
@@ -18,9 +20,14 @@ export default function RootLayout({ children }) {
         <link rel="icon" href="/logo.png" />
       </head>
       <body >
+
         <Nav/>
-        {children}
+
+
+           {children}
+
         <Footer/>
+
         </body>
     </html>
   );
