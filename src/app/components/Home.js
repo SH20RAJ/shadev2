@@ -1,4 +1,5 @@
 import Communities from "./Communities";
+import Login from "./Login";
 import Post from "./Post";
 import Signup from "./Signup";
 import Videopost from "./Videopost";
@@ -50,6 +51,7 @@ export default function Home() {
         </div>
         <div className="sidebar2 sticky top-0 ml-2">
           <Signup />
+          <Login />
           <Communities/>
         </div>
       </div>

@@ -9,13 +9,14 @@ export async function GET(req, res, slug) {
       id: 'desc',
     },
     // skip: 1,
-    // take: 1
+    take: 1000
   });
   
 
   if (users.length) {
     return Response.json({
       success: true,
+      count: users.length,
       message: "Users Found",
       data: { users: users },
       status: 200,
@@ -28,4 +29,5 @@ export async function GET(req, res, slug) {
       status: 404,
     });
   }
+
 }
