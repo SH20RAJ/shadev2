@@ -8,7 +8,7 @@ export async function GET(req, res, slug) {
     // skip: 1,
     // take: 1
   });
-
+  
   console.log(res.params.slug);
 
   if (users.length) {
@@ -27,24 +27,4 @@ export async function GET(req, res, slug) {
     });
   }
 
-  // const usernames = users.map(user => user.username);
-}
-
-
-export async function POST(req, res, next) {
-
-  console.log(JSON.stringify(req));
-
-  // const user = await prisma.user.create({
-  //   data: {
-  //     username: req.body.username,
-  //     email: req.body.email,
-  //     password: req.body.password,
-  //   }
-  // });
-  // console.log(user);
-
-  return Response.json({ success: true, message: "User Created", 
-  // data: { user: user }
- });
 }

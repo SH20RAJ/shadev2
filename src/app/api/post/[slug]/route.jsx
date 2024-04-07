@@ -8,7 +8,6 @@ export async function GET(req, res, slug) {
     // skip: 1,
     // take: 1
   });
-
   console.log(res.params.slug);
 
   if (users.length) {
