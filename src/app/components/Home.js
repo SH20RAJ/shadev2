@@ -9,11 +9,11 @@ console.log("opsh",user);
 
 export default function Home() {
   return (
-    <section className="home">
+    <section className="home w-full">
       <div className="text">Shades {user && " - "+ user}</div>
 
       <div className="content flex p-5">
-        <div className="postcontainer sm:w-2/3 w-full">
+        <div className="postcontainer w-full md:w-2/3 ">
           <div className="tags p-5 flex justify-around no-wrap overflow-auto w-full">
             <button className="hover:bg-purple-50 m-2 text-black bg-white py-2 px-4 border border-blue-700 rounded">
               New
@@ -53,7 +53,7 @@ export default function Home() {
           <Post />
           <Post />
         </div>
-        <div className="sidebar2 sticky top-0 ml-2">
+        <div className="sidebar2 hidden md:block md:w-1/3 sticky top-0 ml-2">
           {!user && <><Signup /> <Login /></>}
           
           

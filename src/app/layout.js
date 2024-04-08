@@ -20,13 +20,17 @@ export default function RootLayout({ children }) {
         <link rel="icon" href="/logo.png" />
       </head>
       <body >
+        <div className="flex">
 
         <Nav/>
-
-
+        </div>
+        <div className="flex flex-row border  border-red-500 h-full ml-[89px]">
            {children}
+        </div>
 
+        {/* <div className="flex absolute">
         <Footer/>
+        </div> */}
 
         </body>
     </html>
