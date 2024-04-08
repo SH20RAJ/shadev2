@@ -20,7 +20,8 @@
     "prisma": "^5.12.1",
     "react": "^18",
     "react-dom": "^18",
-    "react-toastify": "^10.0.5"
+    "react-toastify": "^10.0.5",
+    "rich-text-converter": "^1.0.1"
   },
   "devDependencies": {
     "autoprefixer": "^10.0.1",
