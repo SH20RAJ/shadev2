@@ -1,8 +1,3 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-    experimental: {
-        pageDataCollectionTimeout: 20000, // Increase the timeout (in milliseconds)
-      },
+module.exports = {
+  staticPageGenerationTimeout: 1200, // Increase timeout to 2 minutes
 };
-
-export default nextConfig;
