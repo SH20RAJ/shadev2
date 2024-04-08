@@ -1,17 +1,19 @@
 import prisma from "../../../../prisma/index";
+// import { user } from "../../helpers/auth";
 export async function POST(req, res, next) {
-
+  console.log("starting auth");
   let payload = await req.json();
   console.log("payload",payload);
+
 
   const post = await prisma.post.create({
     data: {
       content: payload.content,
-      authorId: 4,
+      authorId: 2,
     }
   });
 
-  if(user){
+  if(post){
     return Response.json({ success: true, message: "Post Created", 
     data: { post: post }
    });
