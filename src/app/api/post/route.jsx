@@ -4,25 +4,22 @@ export async function POST(req, res, next) {
   let payload = await req.json();
   console.log("payload",payload);
 
-  const user = await prisma.user.create({
+  const post = await prisma.post.create({
     data: {
-      username: payload.username,
-      email: payload.email,
-      password: payload.password,
+      content: payload.content,
+      authorId: 4,
     }
   });
-  console.log(user);
-  user.password = undefined;
 
   if(user){
-    return Response.json({ success: true, message: "User Created", 
-    data: { user: user }
+    return Response.json({ success: true, message: "Post Created", 
+    data: { post: post }
    });
   }else {
     return Response.json({
       success: false,
       message: "Something wents wrong",
-      data: { user: user },
+      data: { post: post },
       status: 400,
     });
   }
