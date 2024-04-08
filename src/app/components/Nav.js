@@ -78,10 +78,16 @@ const Navbar = () => {
         </div>
 
         <div className="bottom-content">
-            <li className="">
+        <li className="">
                 <Link href="/logout">
                     <i className='bx bx-log-out icon'></i>
                     <span className="text nav-text">Logout</span>
+                </Link>
+            </li>
+            <li className="">
+                <Link href="/create">
+                <i class='bx bx-plus-circle icon'></i>
+                    <span className="text nav-text">Create</span>
                 </Link>
             </li>
 
