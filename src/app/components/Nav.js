@@ -54,7 +54,7 @@ const Navbar = () => {
                 </li>
 
                 <li className="nav-link">
-                    <Link href="/analytics">
+                    <Link href="/explore">
                         <i className='bx bx-pie-chart-alt icon'></i>
                         <span className="text nav-text">Analytics</span>
                     </Link>
