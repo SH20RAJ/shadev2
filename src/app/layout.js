@@ -28,9 +28,9 @@ export default function RootLayout({ children }) {
            {children}
         </div>
 
-        {/* <div className="flex absolute">
+        <div className="flex absolute">
         <Footer/>
-        </div> */}
+        </div>
 
         </body>
     </html>
