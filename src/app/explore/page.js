@@ -1,10 +1,13 @@
 import prisma from "../../../prisma/index";
 import Post from "../components/Post";
 
-export default async function page() {
+export default async function Explore() {
   // Fetch posts from Prisma
   const posts = await prisma.post.findMany({
-    take: 10,
+    take: 40,
+    orderBy: {
+      id: "desc"
+    },
     include: {
       author: {
         select: {
@@ -15,7 +18,7 @@ export default async function page() {
     }
   });
 
-  console.log(posts); // Check fetched posts in console
+  // console.log(posts); // Check fetched posts in console
 
   // Render a simple React component
   return (

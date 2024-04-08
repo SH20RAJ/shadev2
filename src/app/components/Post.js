@@ -1,5 +1,19 @@
 import Link from "next/link";
 let Post = async ({ post }) => {
+
+
+  let content = "";
+  if(post.type == "image"){
+    content = '<img src='+post.contentURL+' alt="Post Image" className="mt-2 rounded-sm" />'
+  }
+  if(post.type == "video"){
+    let json = {"posterurl":post.image,"id":post.contentURL}
+    json =  btoa(JSON.stringify(json));
+    // console.log("json",json);
+    content = '<iframe style="width:100%" height="350"  scrolling="no" src="https://sh20raj.github.io/VideoPlyr/plyr.html?id='+json+'" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media;  gyroscope; picture-in-picture" allowfullscreen> </iframe>'
+  }
+
+
   return (
     <>
       <div className="max-w-xl mx-auto my-8">
@@ -26,11 +40,10 @@ let Post = async ({ post }) => {
           {/* Post Content */}
           <div className="px-4 py-2">
             <p className="text-lg">{post.content}</p>
-            <img
-              src={post.contentURL}
-              alt="Post Image"
-              className="mt-2 rounded-sm"
-            />
+            {
+              <div dangerouslySetInnerHTML={{ __html: content }} />
+             
+            }
           </div>
           {/* Post Actions */}
           <div className="flex items-center justify-between px-10 py-2 border-t">

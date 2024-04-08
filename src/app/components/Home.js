@@ -1,11 +1,11 @@
 import { getUser, user } from "../helpers/auth";
+import Page from "../explore/page";
 import Communities from "./Communities";
 import Login from "./Login";
-import Post from "./Post";
 import Signup from "./Signup";
 import Videopost from "./Videopost";
 
-console.log("opsh",user);
+// console.log("opsh",user);
 
 export default function Home() {
   return (
@@ -47,15 +47,11 @@ export default function Home() {
             </button>
           </div>
           <hr style={{color:'black'}}/>
-          
-          <Post />
-          <Videopost />
-          <Post />
-          <Post />
+        
+          <Page/>
         </div>
         <div className="sidebar2 hidden md:block md:w-1/3 sticky top-0 ml-2">
           {!user && <><Signup /> <Login /></>}
-          
           
           <Communities/>
         </div>

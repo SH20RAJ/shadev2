@@ -4,7 +4,7 @@
 import Home from './components/Home';
 
 const Page = (req,res) => {
-  console.log(res);
+  // console.log(res);
   return (
     <>
     <Home />

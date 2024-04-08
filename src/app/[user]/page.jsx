@@ -1,6 +1,6 @@
 
 let User = async ({params}) => {
-    console.log("res",params);
+    // console.log("res",params);
     let fetchUser = async () => {
         let user = await fetch("http://localhost:3000/api/user/"+ params.user+ "")
         return user.json();
