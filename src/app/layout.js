@@ -24,7 +24,7 @@ export default function RootLayout({ children }) {
 
         <Nav/>
         </div>
-        <div className="flex flex-row border  border-red-500 h-full ml-[89px]">
+        <div className="flex flex-row border  shadow-xl  h-full ml-[89px]">
            {children}
         </div>
 

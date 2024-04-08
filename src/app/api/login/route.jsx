@@ -6,7 +6,7 @@ import Encriptor from 'encriptorjs';
 export async function POST(req, res, next) {
 
   let payload = await req.json();
-  console.log("payload",payload);
+  // console.log("payload",payload);
 
   const user = await prisma.user.findMany({
     where: {

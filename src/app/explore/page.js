@@ -1,9 +1,34 @@
-import getPost from "../components/getPost.js"
-export default function page() {
+import prisma from "../../../prisma/index";
+import Post from "../components/Post";
+
+export default async function Explore() {
+  // Fetch posts from Prisma
+  const posts = await prisma.post.findMany({
+    take: 40,
+    orderBy: {
+      id: "desc"
+    },
+    include: {
+      author: {
+        select: {
+          username: true,
+          name: true
+        }
+      }
+    }
+  });
+
+  // console.log(posts); // Check fetched posts in console
+
+  // Render a simple React component
   return (
-    <div>
-     <getPost/>
-     Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga error nam voluptatibus tempora sit! Distinctio, ducimus, cupiditate vero doloribus placeat obcaecati dolores excepturi, labore tenetur consequatur praesentium sapiente fuga itaque.
-    </div>
-  )
+    <>
+      <h1>Posts</h1>
+      <ul>
+        {posts.map((post) => (
+          <Post post={post} key={post.id}/>
+        ))}
+      </ul>
+    </>
+  );
 }

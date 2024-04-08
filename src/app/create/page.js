@@ -1,4 +1,10 @@
 import CreatePost from "../components/CreatePost"
+
+
+
+
+
+
 export default function page() {
   return (
     <div className="flex pl-20 justify-center min-h-screen">
