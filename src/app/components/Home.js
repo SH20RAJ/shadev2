@@ -47,6 +47,7 @@ export default function Home() {
             </button>
           </div>
           <hr style={{color:'black'}}/>
+          
           <Post />
           <Videopost />
           <Post />
