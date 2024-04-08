@@ -1,5 +1,7 @@
+import Link from 'next/link'
 
-let Post = async () => {
+
+let Post = async ({post}) => {
 
   return(
           <>
@@ -14,19 +16,19 @@ let Post = async () => {
         className="h-10 w-10 rounded-full mr-2 bg-contain	"
       />
       <div>
-        <a href="https://github.com/sh20raj" target="_">
+        <Link href="https://github.com/sh20raj" target="_">
           <h3 className="text-lg font-semibold">
-            Sh Raj <span className="text-sm text-gray-600">@sh20raj</span>
+            {post.author.name} <span className="text-sm text-gray-600">@{post.author.username}</span>
           </h3>{" "}
-        </a>
-        <p className="text-sm text-gray-600">Posted on January 1, 2024</p>
+        </Link>
+        <p className="text-sm text-gray-600">Posted on {""}</p>
       </div>
     </div>
     {/* Post Content */}
     <div className="px-4 py-2">
-      <p className="text-lg">This is a Facebook post UI clone! 🚀</p>
+      <p className="text-lg">{post.content}</p>
       <img
-        src="https://images.unsplash.com/photo-1579353977828-2a4eab540b9a?q=80&w=2874&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        src={post.contentURL}
         alt="Post Image"
         className="mt-2 rounded-sm"
       />
