@@ -29,7 +29,7 @@ let Post = async ({ post }) => {
               className="h-10 w-10 rounded-full mr-2 bg-contain	"
             />
             <div>
-              <Link href="https://github.com/sh20raj" target="_">
+              <Link href={"/"+post.author.username} >
                 <h3 className="text-lg font-semibold">
                   {post.author.name}{" "}
                   <span className="text-sm text-gray-600">

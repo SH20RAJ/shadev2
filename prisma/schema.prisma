@@ -32,6 +32,12 @@ enum type {
   game
 }
 
+enum status {
+  public
+  private
+  unlisted
+}
+
 model Post {
   id         Int       @id @default(autoincrement())
   content    String
@@ -42,6 +48,7 @@ model Post {
   updatedAt  DateTime  @updatedAt
   author     User      @relation(fields: [authorId], references: [id])
   authorId   Int
+  status     status
   likes      Like[]
   comments   Comment[]
 }
