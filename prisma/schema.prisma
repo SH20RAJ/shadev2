@@ -6,76 +6,92 @@ datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
-
-enum type {
-  video
-  text
-  image
-  audio
-  poll
-  game
+enum Type {
+  VIDEO
+  TEXT
+  IMAGE
+  AUDIO
+  POLL
+  GAME
 }
 
-enum status {
-  public
-  private
-  unlisted
+enum Status {
+  PUBLIC
+  PRIVATE
+  UNLISTED
+}
+
+enum ReactionType {
+  LIKE
+  LOVE
+  HAHA
+  WOW
+  SAD
+  ANGRY
 }
 
 model User {
-  id         Int       @id @default(autoincrement())
-  username   String    @unique
-  email      String    @unique
-  password   String
-  name       String?
-  bio        String?
-  avatar     String?
-  coverPhoto String?
-  createdAt  DateTime  @default(now())
-  updatedAt  DateTime  @updatedAt
-  posts      Post[]
-  likes      Like[]
-  status     status    @default(public)
-  comments   Comment[]
-  followers  Follow[]  @relation("UserFollowers") // Unique relation name for followers
-  following  Follow[]  @relation("UserFollowing") // Unique relation name for following
+  id            Int            @id @default(autoincrement())
+  username      String         @unique
+  email         String         @unique
+  password      String
+  name          String?
+  bio           String?
+  avatar        String?
+  coverPhoto    String?
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  posts         Post[]
+  likes         Like[]
+  status        Status         @default(PUBLIC)
+  comments      Comment[]
+  followers     Follow[]       @relation("UserFollowers")
+  following     Follow[]       @relation("UserFollowing")
+  roles         UserRole[]
+  receivedMessages Message[]   @relation("ReceiverMessages")
+  sentMessages  Message[]     @relation("SenderMessages")
+  pollResponses PollResponse[]
+
 }
 
 model Post {
-  id         Int       @id @default(autoincrement())
-  content    String
-  image      String?
-  contentURL String?
-  type       type?     @default(text)
-  createdAt  DateTime  @default(now())
-  updatedAt  DateTime  @updatedAt
-  author     User      @relation(fields: [authorId], references: [id])
-  authorId   Int
-  status     status    @default(public)
-  likes      Like[]
-  comments   Comment[]
-  tags       Tag[]     // Added for tags on posts
+  id            Int            @id @default(autoincrement())
+  content       String
+  image         String?
+  contentURL    String?
+  type          Type?          @default(TEXT)
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  author        User           @relation(fields: [authorId], references: [id])
+  authorId      Int
+  status        Status         @default(PUBLIC)
+  likes         Like[]
+  comments      Comment[]
+  tags          Tag[]    
+  pollOptions PollOption[]
+     
 }
 
 model Like {
-  id        Int      @id @default(autoincrement())
-  user      User     @relation(fields: [userId], references: [id])
-  userId    Int
-  post      Post     @relation(fields: [postId], references: [id])
-  postId    Int
-  reaction  String?  // Added for different reactions
-  createdAt DateTime @default(now())
+  id            Int            @id @default(autoincrement())
+  user          User           @relation(fields: [userId], references: [id])
+  userId        Int
+  post          Post           @relation(fields: [postId], references: [id])
+  postId        Int
+  reaction      ReactionType   @default(LIKE)
+  createdAt     DateTime       @default(now())
 }
 
 model Comment {
-  id        Int      @id @default(autoincrement())
-  content   String
-  user      User     @relation(fields: [userId], references: [id])
-  userId    Int
-  post      Post     @relation(fields: [postId], references: [id])
-  postId    Int
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id            Int            @id @default(autoincrement())
+  content       String
+  user          User           @relation(fields: [userId], references: [id])
+  userId        Int
+  post          Post           @relation(fields: [postId], references: [id])
+  postId        Int
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  media         String?        
 }
 
 model Tag {
@@ -83,15 +99,60 @@ model Tag {
   name      String   @unique
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  posts     Post[]   // Many-to-many relationship with Post
+  posts     Post[]  
 }
 
 model Follow {
-  id          Int      @id @default(autoincrement())
-  follower    User     @relation("UserFollowers", fields: [followerId], references: [id])
-  followerId  Int
-  following   User     @relation("UserFollowing", fields: [followingId], references: [id])
-  followingId Int
-  createdAt   DateTime @default(now())
+  id            Int            @id @default(autoincrement())
+  follower      User           @relation("UserFollowers", fields: [followerId], references: [id])
+  followerId    Int
+  following     User           @relation("UserFollowing", fields: [followingId], references: [id])
+  followingId   Int
+  createdAt     DateTime       @default(now())
   @@unique([followerId, followingId])
+}
+
+model UserRole {
+  id            Int            @id @default(autoincrement())
+  userId        Int
+  role          Role
+  user          User           @relation(fields: [userId], references: [id])
+  createdAt     DateTime       @default(now())
+}
+
+enum Role {
+  ADMIN
+  MODERATOR
+  USER
+}
+
+model Message {
+  id            Int            @id @default(autoincrement())
+  content       String
+  senderId      Int
+  receiverId    Int
+  sender        User           @relation("SenderMessages", fields: [senderId], references: [id])
+  receiver      User           @relation("ReceiverMessages", fields: [receiverId], references: [id])
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+}
+
+
+model PollOption {
+  id        Int      @id @default(autoincrement())
+  postId    Int
+  post      Post     @relation(fields: [postId], references: [id])
+  option    String
+  responses PollResponse[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model PollResponse {
+  id          Int      @id @default(autoincrement())
+  pollOptionId Int
+  pollOption  PollOption @relation(fields: [pollOptionId], references: [id])
+  userId      Int
+  user        User     @relation(fields: [userId], references: [id])
+  createdAt   DateTime @default(now())
 }
