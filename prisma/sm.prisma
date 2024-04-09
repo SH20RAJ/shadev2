@@ -7,30 +7,28 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 enum Type {
-  video
-  shortvideo
-  text
-  image
-  audio
-  poll
-  game
-  article
+  VIDEO
+  SHORTVIDEO
+  TEXT
+  IMAGE
+  AUDIO
+  POLL
+  GAME
 }
 
 enum Status {
-  public
-  private
-  unlisted
+  PUBLIC
+  PRIVATE
+  UNLISTED
 }
 
 enum ReactionType {
-  like
-  love
-  haha
-  wow
-  sad
-  angry
-  dislike
+  LIKE
+  LOVE
+  HAHA
+  WOW
+  SAD
+  ANGRY
 }
 
 model User {
@@ -46,7 +44,7 @@ model User {
   updatedAt     DateTime       @updatedAt
   posts         Post[]
   likes         Like[]
-  status        Status         @default(public)
+  status        Status         @default(PUBLIC)
   comments      Comment[]
   followers     Follow[]       @relation("UserFollowers")
   following     Follow[]       @relation("UserFollowing")
@@ -62,12 +60,12 @@ model Post {
   content       String
   image         String?
   contentURL    String?
-  type          Type?          @default(text)
+  type          Type?          @default(TEXT)
   createdAt     DateTime       @default(now())
   updatedAt     DateTime       @updatedAt
   author        User           @relation(fields: [authorId], references: [id])
   authorId      Int
-  status        Status         @default(public)
+  status        Status         @default(PUBLIC)
   likes         Like[]
   comments      Comment[]
   tags          Tag[]    
@@ -81,7 +79,7 @@ model Like {
   userId        Int
   post          Post           @relation(fields: [postId], references: [id])
   postId        Int
-  reaction      ReactionType   @default(like)
+  reaction      ReactionType   @default(LIKE)
   createdAt     DateTime       @default(now())
 }
 
