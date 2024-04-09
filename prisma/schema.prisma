@@ -8,11 +8,13 @@ datasource db {
 }
 enum Type {
   VIDEO
+  SHORTVIDEO
   TEXT
   IMAGE
   AUDIO
   POLL
   GAME
+  ARTICLE
 }
 
 enum Status {
