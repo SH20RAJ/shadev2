@@ -7,22 +7,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id         Int       @id @default(autoincrement())
-  username   String    @unique
-  email      String    @unique
-  password   String
-  name       String?
-  bio        String?
-  avatar     String?
-  coverPhoto String?
-  createdAt  DateTime  @default(now())
-  updatedAt  DateTime  @updatedAt
-  posts      Post[]
-  likes      Like[]
-  comments   Comment[]
-}
-
 enum type {
   video
   text
@@ -38,19 +22,39 @@ enum status {
   unlisted
 }
 
+model User {
+  id         Int       @id @default(autoincrement())
+  username   String    @unique
+  email      String    @unique
+  password   String
+  name       String?
+  bio        String?
+  avatar     String?
+  coverPhoto String?
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  posts      Post[]
+  likes      Like[]
+  status     status    @default(public)
+  comments   Comment[]
+  followers  Follow[]  @relation("UserFollowers") // Unique relation name for followers
+  following  Follow[]  @relation("UserFollowing") // Unique relation name for following
+}
+
 model Post {
   id         Int       @id @default(autoincrement())
   content    String
   image      String?
   contentURL String?
-  type       type?   @default(text)
+  type       type?     @default(text)
   createdAt  DateTime  @default(now())
   updatedAt  DateTime  @updatedAt
   author     User      @relation(fields: [authorId], references: [id])
   authorId   Int
-  status     status
+  status     status    @default(public)
   likes      Like[]
   comments   Comment[]
+  tags       Tag[]     // Added for tags on posts
 }
 
 model Like {
@@ -59,6 +63,7 @@ model Like {
   userId    Int
   post      Post     @relation(fields: [postId], references: [id])
   postId    Int
+  reaction  String?  // Added for different reactions
   createdAt DateTime @default(now())
 }
 
@@ -71,4 +76,22 @@ model Comment {
   postId    Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model Tag {
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  posts     Post[]   // Many-to-many relationship with Post
+}
+
+model Follow {
+  id          Int      @id @default(autoincrement())
+  follower    User     @relation("UserFollowers", fields: [followerId], references: [id])
+  followerId  Int
+  following   User     @relation("UserFollowing", fields: [followingId], references: [id])
+  followingId Int
+  createdAt   DateTime @default(now())
+  @@unique([followerId, followingId])
 }
