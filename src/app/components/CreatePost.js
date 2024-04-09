@@ -1,7 +1,7 @@
 "use client"
 import { useState } from "react";
 
-export default function CreatePost() {
+export default function CreatePost({user}) {
   const [postContent, setPostContent] = useState("");
 
   const handlePost = async () => {
@@ -34,12 +34,12 @@ export default function CreatePost() {
       {/* User Info Section */}
       <div className="flex items-center">
         <img
-          src="https://via.placeholder.com/50"
+          src={"https://api.dicebear.com/8.x/avataaars/svg?seed="+user.username}
           alt="User Profile"
           className="w-10 h-10 rounded-full mr-2"
         />
         <div>
-          <p className="font-semibold text-gray-900"></p>
+          <p className="font-semibold text-gray-900">{user.name}</p>
         </div>
       </div>
       {/* Post Input Section */}

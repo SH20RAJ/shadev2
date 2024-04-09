@@ -1,11 +1,11 @@
-import { cookies } from 'next/headers'
  
-export default function Videos() {
-  const cookieStore = cookies()
-  return cookieStore.getAll().map((cookie) => (
-    <div key={cookie.name}>
-      <p>Name: {cookie.name}</p>
-      <p>Value: {cookie.value}</p>
-    </div>
-  ))
+
+import usernametouser from "../helpers/usernametouser"
+
+export default async function Videos() {
+  let user = await usernametouser('shaswat')
+  return <>
+  if = {user.id}
+  </>
 }
+

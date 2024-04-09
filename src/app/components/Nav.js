@@ -86,7 +86,7 @@ const Navbar = () => {
             </li>
             <li className="">
                 <Link href="/create">
-                <i class='bx bx-plus-circle icon'></i>
+                <i className='bx bx-plus-circle icon'></i>
                     <span className="text nav-text">Create</span>
                 </Link>
             </li>

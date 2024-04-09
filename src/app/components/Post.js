@@ -1,18 +1,21 @@
 import Link from "next/link";
 let Post = async ({ post }) => {
-
-
   let content = "";
-  if(post.type == "image"){
-    content = '<img src='+post.contentURL+' alt="Post Image" className="mt-2 rounded-sm" />'
+  if (post.type == "image") {
+    content =
+      "<img src=" +
+      post.contentURL +
+      ' alt="Post Image" className="mt-2 rounded-sm" />';
   }
-  if(post.type == "video"){
-    let json = {"posterurl":post.image,"id":post.contentURL}
-    json =  btoa(JSON.stringify(json));
+  if (post.type == "video") {
+    let json = { posterurl: post.image, id: post.contentURL };
+    json = btoa(JSON.stringify(json));
     // console.log("json",json);
-    content = '<iframe style="width:100%" height="350"  scrolling="no" src="https://sh20raj.github.io/VideoPlyr/plyr.html?id='+json+'" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media;  gyroscope; picture-in-picture" allowfullscreen> </iframe>'
+    content =
+      '<iframe style="width:100%" height="350"  scrolling="no" src="https://sh20raj.github.io/VideoPlyr/plyr.html?id=' +
+      json +
+      '" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media;  gyroscope; picture-in-picture" allowfullscreen> </iframe>';
   }
-
 
   return (
     <>
@@ -21,7 +24,7 @@ let Post = async ({ post }) => {
           {/* Post Header */}
           <div className="flex items-center px-4 py-3 border-b">
             <img
-              src="https://media.dev.to/cdn-cgi/image/width=320,height=320,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Fuser%2Fprofile_image%2F788719%2F0012e877-5660-4495-97b5-60a3d7f9121e.jpg"
+              src={ (post.author.avatar)? post.author.avatar :  "https://api.dicebear.com/8.x/avataaars/svg?seed=" + post.author.username }
               alt="Profile Picture"
               className="h-10 w-10 rounded-full mr-2 bg-contain	"
             />
@@ -40,10 +43,7 @@ let Post = async ({ post }) => {
           {/* Post Content */}
           <div className="px-4 py-2">
             <p className="text-lg">{post.content}</p>
-            {
-              <div dangerouslySetInnerHTML={{ __html: content }} />
-             
-            }
+            {<div dangerouslySetInnerHTML={{ __html: content }} />}
           </div>
           {/* Post Actions */}
           <div className="flex items-center justify-between px-10 py-2 border-t">

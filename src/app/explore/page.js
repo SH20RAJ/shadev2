@@ -12,11 +12,22 @@ export default async function Explore() {
       author: {
         select: {
           username: true,
-          name: true
+          name: true,
+          avatar: true,
         }
       }
     }
   });
+
+  // const posts = await prisma.post.findMany({
+  //   take: 40,
+  //   orderBy: {
+  //     id: "desc"
+  //   },
+  //   include: {
+  //     author: true
+  //   }
+  // });
 
   // console.log(posts); // Check fetched posts in console
 
