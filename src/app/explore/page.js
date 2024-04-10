@@ -1,3 +1,4 @@
+"use client"
 import prisma from "../../../prisma/index";
 import Post from "../components/Post";
 
